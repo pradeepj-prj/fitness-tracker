@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidhi Calorie Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <script>
+        window.CALORIE_PROFILE = 'vidhi';
+    </script>
+    <div class="container">
+        <header>
+            <h1>Vidhi Calorie Dashboard</h1>
+            <a class="header-link" href="/chat/">Chat</a>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="daily">Daily Status</button>
+            <button class="tab-btn" data-tab="metrics">Metrics</button>
+        </nav>
+
+        <main>
+            <!-- Daily Status Tab -->
+            <section id="daily" class="tab-content active">
+                <div class="deficit-card">
+                    <h2>Today's Progress</h2>
+                    <div class="gauge-container">
+                        <div class="gauge">
+                            <div class="gauge-fill" id="gauge-fill"></div>
+                        </div>
+                        <div class="gauge-label" id="gauge-label">Loading...</div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <span class="stat-value" id="goal-value">-</span>
+                            <span class="stat-label">Goal</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="consumed-value">-</span>
+                            <span class="stat-label">Consumed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="remaining-value">-</span>
+                            <span class="stat-label">Remaining</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="entries-card">
+                    <h2>Today's Entries</h2>
+                    <ul class="entries-list" id="entries-list">
+                        <li class="loading">Loading entries...</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Metrics Tab -->
+            <section id="metrics" class="tab-content">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>Average Daily Intake</h3>
+                        <div class="metric-value" id="avg-intake">-</div>
+                        <div class="metric-unit">kcal/day</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Total Entries</h3>
+                        <div class="metric-value" id="total-entries">-</div>
+                        <div class="metric-unit">logged</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Current Week</h3>
+                        <div class="metric-value" id="current-week">-</div>
+                        <div class="metric-unit" id="current-week-range">from first entry</div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Last 7 Days</h3>
+                    <div class="weekly-chart" id="weekly-chart">
+                        <div class="chart-loading">Loading...</div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Weight Trend</h3>
+                    <div class="weight-summary">
+                        <div>
+                            <div class="weight-summary-label">Latest</div>
+                            <div class="weight-summary-value" id="latest-weight">-</div>
+                        </div>
+                        <div class="weight-change neutral" id="weight-change">Loading...</div>
+                    </div>
+                    <div class="weekly-chart" id="weight-chart">
+                        <div class="chart-loading">Loading...</div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Weekly Average Weight</h3>
+                    <div class="line-chart" id="weekly-weight-line-chart">
+                        <div class="chart-loading">Loading...</div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Weekly Average Calorie Intake</h3>
+                    <div class="line-chart" id="weekly-calorie-line-chart">
+                        <div class="chart-loading">Loading...</div>
+                    </div>
+                </div>
+
+                <div class="common-foods-card">
+                    <h3>Most Common Foods</h3>
+                    <ol class="common-foods-list" id="common-foods">
+                        <li class="loading">Loading...</li>
+                    </ol>
+                </div>
+
+                <div class="macros-card">
+                    <h3>Average Macros</h3>
+                    <div class="macros-row" id="macros-row">
+                        <div class="macro">
+                            <span class="macro-value" id="avg-protein">-</span>
+                            <span class="macro-label">Protein</span>
+                        </div>
+                        <div class="macro">
+                            <span class="macro-value" id="avg-carbs">-</span>
+                            <span class="macro-label">Carbs</span>
+                        </div>
+                        <div class="macro">
+                            <span class="macro-value" id="avg-fat">-</span>
+                            <span class="macro-label">Fat</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/daily.js"></script>
+    <script src="js/metrics.js"></script>
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Initialize
+        loadDailyStatus();
+        loadMetrics();
+    </script>
+</body>
+</html>

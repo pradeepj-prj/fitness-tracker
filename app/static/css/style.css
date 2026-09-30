@@ -1,0 +1,483 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    min-height: 100svh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+}
+
+.header-link {
+    color: #3498db;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.header-link:hover {
+    text-decoration: underline;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    background: #fff;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #666;
+}
+
+.tab-btn:hover {
+    background: #e8e8e8;
+}
+
+.tab-btn.active {
+    background: #3498db;
+    color: #fff;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Cards */
+.deficit-card, .entries-card, .chart-card, .common-foods-card, .macros-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+h2, h3 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+/* Gauge */
+.gauge-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.gauge {
+    width: 100%;
+    height: 24px;
+    background: #ecf0f1;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.gauge-fill {
+    height: 100%;
+    border-radius: 12px;
+    transition: width 0.5s, background 0.3s;
+    width: 0%;
+}
+
+.gauge-fill.green { background: #27ae60; }
+.gauge-fill.yellow { background: #f1c40f; }
+.gauge-fill.red { background: #e74c3c; }
+
+.gauge-label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Stats Row */
+.stats-row {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #3498db;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+}
+
+/* Entries List */
+.entries-list {
+    list-style: none;
+}
+
+.entries-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #ecf0f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.entries-list li:last-child {
+    border-bottom: none;
+}
+
+.entry-name {
+    font-weight: 500;
+}
+
+.entry-calories {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.entries-list .empty, .entries-list .loading {
+    color: #95a5a6;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Metrics Grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.metric-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.metric-card h3 {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #3498db;
+}
+
+.metric-unit {
+    font-size: 0.85rem;
+    color: #95a5a6;
+}
+
+/* Weekly Chart */
+.weekly-chart {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 220px;
+    padding: 10px 0;
+    gap: 8px;
+}
+
+.line-chart {
+    min-height: 240px;
+}
+
+.line-chart-svg {
+    width: 100%;
+    height: 240px;
+    display: block;
+}
+
+.line-grid {
+    stroke: #e6ecf2;
+    stroke-width: 1;
+}
+
+.line-path {
+    fill: none;
+    stroke: #3498db;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.line-path.weight-line {
+    stroke: #8e44ad;
+}
+
+.line-point {
+    fill: #3498db;
+}
+
+.line-point.weight-point {
+    fill: #8e44ad;
+}
+
+.axis-label,
+.point-label {
+    fill: #7f8c8d;
+    font-size: 11px;
+}
+
+.point-label {
+    fill: #2c3e50;
+    font-weight: 600;
+}
+
+.chart-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+}
+
+.bar-value {
+    font-size: 0.75rem;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.bar-track {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+}
+
+.bar {
+    width: 100%;
+    background: #3498db;
+    border-radius: 4px 4px 0 0;
+    min-height: 4px;
+    transition: height 0.3s;
+}
+
+.bar.over-goal {
+    background: #e74c3c;
+}
+
+.bar-label {
+    font-size: 0.7rem;
+    color: #7f8c8d;
+    margin-top: 6px;
+}
+
+.chart-loading {
+    width: 100%;
+    text-align: center;
+    color: #95a5a6;
+}
+
+/* Weight */
+.weight-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.weight-summary-label {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+}
+
+.weight-summary-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #8e44ad;
+}
+
+.weight-change {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.weight-change.good {
+    color: #27ae60;
+}
+
+.weight-change.up {
+    color: #e67e22;
+}
+
+.weight-change.neutral {
+    color: #7f8c8d;
+}
+
+.weight-bar {
+    background: #8e44ad;
+}
+
+/* Common Foods */
+.common-foods-list {
+    padding-left: 20px;
+}
+
+.common-foods-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.common-foods-list li:last-child {
+    border-bottom: none;
+}
+
+.food-count {
+    color: #95a5a6;
+    font-size: 0.85rem;
+}
+
+/* Macros */
+.macros-row {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.macro-value {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.macro-label {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 12px;
+    }
+
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: #f5f5f5;
+        margin: -12px -12px 14px;
+        padding: 12px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    header h1 {
+        font-size: 1.15rem;
+        line-height: 1.2;
+    }
+
+    .tabs {
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+
+    .tab-btn {
+        min-height: 42px;
+        padding: 9px 10px;
+        font-size: 0.92rem;
+    }
+
+    .deficit-card, .entries-card, .chart-card, .common-foods-card, .macros-card,
+    .metric-card {
+        border-radius: 8px;
+        padding: 14px;
+        margin-bottom: 12px;
+    }
+
+    h2, h3 {
+        margin-bottom: 10px;
+    }
+
+    .gauge-label {
+        font-size: 1.25rem;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .stats-row, .macros-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .stat-value,
+    .macro-value {
+        font-size: 1.05rem;
+    }
+
+    .entries-list li {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .entry-calories {
+        white-space: nowrap;
+    }
+
+    .weekly-chart {
+        height: 180px;
+        gap: 5px;
+    }
+
+    .line-chart {
+        min-height: 210px;
+        overflow-x: auto;
+    }
+
+    .line-chart-svg {
+        min-width: 520px;
+        height: 210px;
+    }
+
+    .axis-label,
+    .point-label {
+        font-size: 10px;
+    }
+}
