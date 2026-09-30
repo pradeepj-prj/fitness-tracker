@@ -65,6 +65,18 @@ with an empty database.
 If `AUTH_PASSWORD` is blank, the app runs without login protection. Do not deploy that way.
 `/health` remains public for uptime checks; chat, dashboard, and API routes require login.
 
+## Deploy on Render
+
+This repo includes `render.yaml` for a Render Blueprint Docker deploy with a persistent disk mounted at `/data`.
+
+1. Push this repo to GitHub.
+2. In Render, choose **New +** -> **Blueprint** and select this repository.
+3. Enter required secret values when prompted:
+   - `OPENAI_API_KEY`
+   - `AUTH_PASSWORD`
+4. Deploy. Render will create the persistent disk and store SQLite at `/data/calorie_tracker.db`.
+5. If you need existing local data in production, upload `calorie_tracker.db` to the Render disk as `/data/calorie_tracker.db` before relying on the hosted app.
+
 ## Verify
 
 ```bash

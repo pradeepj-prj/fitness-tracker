@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: fitness-tracker
+    runtime: docker
+    plan: starter
+    branch: main
+    healthCheckPath: /health
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    disk:
+      name: fitness-tracker-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: DATABASE_PATH
+        value: /data/calorie_tracker.db
+      - key: SESSION_COOKIE_SECURE
+        value: "true"
+      - key: OPENAI_MODEL
+        value: gpt-5-mini
+      - key: AUTH_USERNAME
+        value: tracker
+      - key: AUTH_PASSWORD
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: AGENT_CONTEXT_MESSAGE_LIMIT
+        value: "24"
+      - key: AGENT_TRANSCRIPT_RETENTION_LIMIT
+        value: "200"
