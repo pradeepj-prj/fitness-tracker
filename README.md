@@ -28,7 +28,7 @@ Set at least:
 OPENAI_API_KEY=...
 OPENAI_MODEL=gpt-5-mini
 DATABASE_PATH=calorie_tracker.db
-AUTH_USERNAME=tracker
+AUTH_USERNAME=Vidhi
 AUTH_PASSWORD=choose-a-long-password
 SESSION_SECRET=generate-a-long-random-secret
 ```
@@ -49,7 +49,7 @@ Required environment:
 OPENAI_API_KEY=...
 OPENAI_MODEL=gpt-5-mini
 DATABASE_PATH=/data/calorie_tracker.db
-AUTH_USERNAME=tracker
+AUTH_USERNAME=Vidhi
 AUTH_PASSWORD=choose-a-long-password
 SESSION_SECRET=generate-a-long-random-secret
 SESSION_COOKIE_SECURE=true
@@ -74,6 +74,8 @@ This repo includes `render.yaml` for a Render Blueprint Docker deploy with a per
 3. Enter required secret values when prompted:
    - `OPENAI_API_KEY`
    - `AUTH_PASSWORD`
+
+   Login username defaults to `Vidhi`.
 4. Deploy. Render will create the persistent disk and store SQLite at `/data/calorie_tracker.db`.
 5. If you need existing local data in production, upload `calorie_tracker.db` to the Render disk as `/data/calorie_tracker.db` before relying on the hosted app.
 
